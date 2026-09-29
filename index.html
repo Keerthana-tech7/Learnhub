@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Student Study Resource Portal - Comprehensive syllabus notes, code examples, cheat sheets, peer uploads, and AI-powered study assistance.">
+
+    <title>Student Study Resource Portal | Modern Learning Hub</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans, Outfit, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header>
+        <div class="logo" id="site-logo" onclick="handleLogoClick()">
+            <div class="logo-badge">📚</div>
+            <div class="logo-text">Study<span>Portal</span></div>
+            <span class="logo-tag">Pro</span>
+        </div>
+
+        <nav id="main-nav">
+            <a href="#" class="nav-link nav-protected" onclick="showPage('home')">🏠 Home</a>
+            <a href="#" class="nav-link nav-protected" onclick="showPage('resources')">📚 Resources</a>
+            <a href="#" class="nav-link nav-protected" onclick="showPage('upload')">📤 Upload</a>
+            <a href="#" class="nav-link nav-protected" onclick="showPage('ai-search')">🤖 AI Search</a>
+            <a href="#" class="nav-link nav-protected" onclick="showPage('admin')">🛠️ Admin</a>
+            <a href="#" class="nav-link" id="nav-register" onclick="showPage('register')">📝 Register</a>
+            <a href="#" class="nav-link" id="nav-login" onclick="showPage('login')">🔐 Login</a>
+            <span id="user-greeting" class="user-greeting" style="display: none;">
+                <span class="user-status-dot"></span>
+                <span id="user-greeting-name">Student</span>
+            </span>
+            <a href="#" class="nav-link nav-logout" id="nav-logout" onclick="logoutUser()" style="display: none;">🚪 Logout</a>
+        </nav>
+    </header>
+
+
+    <!-- ================= HOME ================= -->
+    <section id="home" class="page">
+
+        <div class="hero">
+            <div class="hero-content">
+                <div class="hero-badge-pill">
+                    <span class="sparkle">✨</span>
+                    <span>Academic Year 2026 Resource Hub</span>
+                </div>
+
+                <h1>
+                    Master Your Coursework With <span class="gradient-text">StudyPortal</span>
+                </h1>
+
+                <p>
+                    Find verified syllabus notes, explore interactive code examples, share resources with peers, and get instant answers with our AI study assistant.
+                </p>
+
+                <div class="hero-actions">
+                    <button class="btn-primary" onclick="showPage('resources')">
+                        🚀 Explore Resources
+                    </button>
+                    <button class="btn-secondary" onclick="showPage('ai-search')">
+                        🤖 Try AI Study Search
+                    </button>
+                </div>
+
+                <div class="hero-stats-chips">
+                    <div class="hero-chip">
+                        <span>⚡</span> Instant Access
+                    </div>
+                    <div class="hero-chip">
+                        <span>🎯</span> Exam-Oriented Notes
+                    </div>
+                    <div class="hero-chip">
+                        <span>💻</span> Runnable Code Snippets
+                    </div>
+                    <div class="hero-chip">
+                        <span>🤝</span> Peer Collaboration
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Features Section -->
+        <div class="features">
+
+            <div class="card" onclick="showPage('resources')" style="cursor: pointer;">
+                <div class="card-icon-box">📚</div>
+                <h2>Study Resources</h2>
+                <p>
+                    Curated lecture notes, cheat sheets, and practical code snippets across core Computer Science and Engineering subjects.
+                </p>
+            </div>
+
+            <div class="card" onclick="showPage('upload')" style="cursor: pointer;">
+                <div class="card-icon-box">📤</div>
+                <h2>Upload & Share</h2>
+                <p>
+                    Contribute useful study materials, lab programs, and personal revision notes to empower the student community.
+                </p>
+            </div>
+
+            <div class="card" onclick="showPage('ai-search')" style="cursor: pointer;">
+                <div class="card-icon-box">🤖</div>
+                <h2>AI Study Search</h2>
+                <p>
+                    Ask conceptual questions in natural language and retrieve exact syllabus-aligned explanations and code examples instantly.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- Statistics Section -->
+        <div class="stats">
+
+            <div class="stat-card">
+                <div class="stat-icon">📖</div>
+                <h2 id="stat-resources">5</h2>
+                <p>Verified Resources</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <h2 id="stat-subjects">5</h2>
+                <p>Core Subjects</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <h2 id="stat-downloads">1.2k+</h2>
+                <p>Student Reads</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= RESOURCES ================= -->
+    <section id="resources" class="page">
+
+        <div class="page-header-box">
+            <span class="section-pill">📚 Resource Library</span>
+            <h1>Explore Academic Study Resources</h1>
+            <p class="page-lead">
+                Browse through carefully structured, exam-oriented syllabus notes with code snippets, tips, and downloadable summaries.
+            </p>
+        </div>
+
+        <!-- Search & Filter Controls -->
+        <div class="search-box">
+            <div class="search-input-wrap">
+                <span class="search-icon">🔍</span>
+                <input
+                    type="text"
+                    id="resource-search"
+                    placeholder="Search topics (e.g. pointers, flexbox, oop, aws)..."
+                >
+            </div>
+
+            <select id="subject-filter">
+                <option value="">All Subjects</option>
+                <option value="C Programming">C Programming</option>
+                <option value="Java">Java</option>
+                <option value="Python">Python</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Cloud Computing">Cloud Computing</option>
+            </select>
+        </div>
+
+        <!-- Subject Filter Chips Row -->
+        <div class="filter-chips-container" id="subject-filter-chips">
+            <button type="button" class="filter-chip active" data-subject="">All Subjects</button>
+            <button type="button" class="filter-chip" data-subject="C Programming">💻 C Programming</button>
+            <button type="button" class="filter-chip" data-subject="Web Development">🌐 Web Dev</button>
+            <button type="button" class="filter-chip" data-subject="Cloud Computing">☁️ Cloud Computing</button>
+            <button type="button" class="filter-chip" data-subject="Java">☕ Java</button>
+            <button type="button" class="filter-chip" data-subject="Python">🐍 Python</button>
+        </div>
+
+
+        <!-- Resource Cards Grid -->
+        <div id="resource-list">
+
+            <div class="resource-card" data-id="c-basics" data-subject="C Programming">
+                <div class="card-top-meta">
+                    <span class="card-badge badge-c">💻 C Programming</span>
+                    <span class="card-read-time">⏱️ 7 min read</span>
+                </div>
+                <h2>C Programming Basics</h2>
+                <p>
+                    Master core C syntax, memory architecture, control flow, functions, pointer arithmetic, and dynamic allocation.
+                </p>
+                <div class="topic-tags">
+                    <span class="topic-tag">#Pointers</span>
+                    <span class="topic-tag">#Memory</span>
+                    <span class="topic-tag">#Functions</span>
+                    <span class="topic-tag">#Loops</span>
+                </div>
+                <p>
+                    <strong>Subject:</strong> C Programming
+                </p>
+                <button class="view-resource-btn" data-id="c-basics">
+                    📖 View Resource
+                </button>
+            </div>
+
+
+            <div class="resource-card" data-id="web-dev" data-subject="Web Development">
+                <div class="card-top-meta">
+                    <span class="card-badge badge-web">🌐 Web Development</span>
+                    <span class="card-read-time">⏱️ 8 min read</span>
+                </div>
+                <h2>HTML5 & Modern CSS</h2>
+                <p>
+                    Complete guide to semantic HTML tags, modern box model layout, Flexbox, CSS Grid systems, and media queries.
+                </p>
+                <div class="topic-tags">
+                    <span class="topic-tag">#HTML5</span>
+                    <span class="topic-tag">#Flexbox</span>
+                    <span class="topic-tag">#CSSGrid</span>
+                    <span class="topic-tag">#Responsive</span>
+                </div>
+                <p>
+                    <strong>Subject:</strong> Web Development
+                </p>
+                <button class="view-resource-btn" data-id="web-dev">
+                    📖 View Resource
+                </button>
+            </div>
+
+
+            <div class="resource-card" data-id="aws-cloud" data-subject="Cloud Computing">
+                <div class="card-top-meta">
+                    <span class="card-badge badge-cloud">☁️ Cloud Computing</span>
+                    <span class="card-read-time">⏱️ 6 min read</span>
+                </div>
+                <h2>AWS Cloud Fundamentals</h2>
+                <p>
+                    Foundational cloud architecture concepts: EC2 compute, S3 storage, RDS databases, Lambda serverless, and IAM security.
+                </p>
+                <div class="topic-tags">
+                    <span class="topic-tag">#AWS</span>
+                    <span class="topic-tag">#EC2</span>
+                    <span class="topic-tag">#S3</span>
+                    <span class="topic-tag">#Serverless</span>
+                </div>
+                <p>
+                    <strong>Subject:</strong> Cloud Computing
+                </p>
+                <button class="view-resource-btn" data-id="aws-cloud">
+                    📖 View Resource
+                </button>
+            </div>
+
+
+            <div class="resource-card" data-id="java-oop" data-subject="Java">
+                <div class="card-top-meta">
+                    <span class="card-badge badge-java">☕ Java</span>
+                    <span class="card-read-time">⏱️ 9 min read</span>
+                </div>
+                <h2>Java OOP Concepts</h2>
+                <p>
+                    In-depth breakdown of Object-Oriented principles: encapsulation, inheritance, polymorphism, abstract classes, and collections.
+                </p>
+                <div class="topic-tags">
+                    <span class="topic-tag">#OOP</span>
+                    <span class="topic-tag">#Inheritance</span>
+                    <span class="topic-tag">#Polymorphism</span>
+                    <span class="topic-tag">#Collections</span>
+                </div>
+                <p>
+                    <strong>Subject:</strong> Java
+                </p>
+                <button class="view-resource-btn" data-id="java-oop">
+                    📖 View Resource
+                </button>
+            </div>
+
+
+            <div class="resource-card" data-id="python-core" data-subject="Python">
+                <div class="card-top-meta">
+                    <span class="card-badge badge-python">🐍 Python</span>
+                    <span class="card-read-time">⏱️ 6 min read</span>
+                </div>
+                <h2>Python Essentials</h2>
+                <p>
+                    Concise and comprehensive guide to Python data structures, list comprehensions, dictionary tricks, and file handling.
+                </p>
+                <div class="topic-tags">
+                    <span class="topic-tag">#DataStructures</span>
+                    <span class="topic-tag">#Comprehensions</span>
+                    <span class="topic-tag">#FileIO</span>
+                    <span class="topic-tag">#PEP8</span>
+                </div>
+                <p>
+                    <strong>Subject:</strong> Python
+                </p>
+                <button class="view-resource-btn" data-id="python-core">
+                    📖 View Resource
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= UPLOAD ================= -->
+    <section id="upload" class="page">
+
+        <div class="page-header-box centered">
+            <span class="section-pill">📤 Contribute</span>
+            <h1>Upload Study Resource</h1>
+            <p class="page-lead">
+                Share your lecture summaries, hand-written notes, or code solutions with other students on the portal.
+            </p>
+        </div>
+
+        <form id="upload-form">
+
+            <label for="upload-title">Resource Title</label>
+            <input
+                type="text"
+                id="upload-title"
+                placeholder="e.g. C Programming Pointers Cheat Sheet"
+                required
+            >
+
+            <label for="upload-subject">Subject</label>
+            <select id="upload-subject" required>
+                <option value="">Select Subject</option>
+                <option value="C Programming">C Programming</option>
+                <option value="Java">Java</option>
+                <option value="Python">Python</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Cloud Computing">Cloud Computing</option>
+            </select>
+
+            <label for="resource-description">Description & Summary</label>
+            <textarea
+                id="resource-description"
+                placeholder="Briefly describe what this resource covers, key topics, and exam relevance..."
+                required
+            ></textarea>
+
+            <label for="resource-file">Choose Notes File (PDF, Code, or Text)</label>
+            <input
+                type="file"
+                id="resource-file"
+                required
+            >
+
+            <button type="submit">
+                🚀 Upload & Publish Resource
+            </button>
+
+        </form>
+
+    </section>
+
+
+
+    <!-- ================= AI SEARCH ================= -->
+    <section id="ai-search" class="page">
+
+        <div class="page-header-box centered">
+            <span class="section-pill">🤖 Smart Study Assistant</span>
+            <h1>AI Study Search</h1>
+            <p class="page-lead">
+                Ask a technical question or search for syllabus topics to retrieve relevant study notes and code snippets instantly.
+            </p>
+        </div>
+
+        <div class="ai-search-card">
+            <form id="ai-form">
+                <input
+                    type="text"
+                    id="ai-query"
+                    placeholder="Ask a question (e.g. How do pointers work in C? or Explain Flexbox)"
+                    required
+                >
+
+                <button type="submit">
+                    🔍 Search AI
+                </button>
+            </form>
+
+            <div class="ai-suggestions-row">
+                <span class="suggestion-label">💡 Try searching:</span>
+                <button type="button" class="query-chip" data-query="Explain C loops">Explain C loops</button>
+                <button type="button" class="query-chip" data-query="pointers">pointers</button>
+                <button type="button" class="query-chip" data-query="Flexbox vs Grid">Flexbox vs Grid</button>
+                <button type="button" class="query-chip" data-query="Java OOP">Java OOP</button>
+                <button type="button" class="query-chip" data-query="Python list comprehensions">Python comprehensions</button>
+                <button type="button" class="query-chip" data-query="AWS EC2">AWS EC2</button>
+            </div>
+        </div>
+
+        <div id="ai-results">
+            <h2>Search Results</h2>
+            <p>
+                Type a query above or click one of the suggested topics to retrieve relevant study materials and code snippets.
+            </p>
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= ADMIN ================= -->
+    <section id="admin" class="page">
+
+        <div class="page-header-box">
+            <span class="section-pill">🛠️ Administrative Management</span>
+            <h1>Admin Control Panel</h1>
+            <p class="page-lead">
+                Review, moderate, and approve community-submitted notes and maintain resource quality standards.
+            </p>
+        </div>
+
+        <!-- Metrics Overview -->
+        <div class="admin-metrics-row">
+            <div class="admin-metric-card">
+                <div class="admin-metric-icon">📁</div>
+                <div>
+                    <div class="admin-metric-val">5</div>
+                    <div class="admin-metric-label">Published Resources</div>
+                </div>
+            </div>
+
+            <div class="admin-metric-card">
+                <div class="admin-metric-icon">⏳</div>
+                <div>
+                    <div class="admin-metric-val" id="admin-pending-count">1</div>
+                    <div class="admin-metric-label">Pending Review</div>
+                </div>
+            </div>
+
+            <div class="admin-metric-card">
+                <div class="admin-metric-icon">🛡️</div>
+                <div>
+                    <div class="admin-metric-val" style="color: #10b981;">Active</div>
+                    <div class="admin-metric-label">System Status</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="admin-list">
+
+            <div class="resource-card" id="admin-sample-card">
+                <div class="card-top-meta">
+                    <span class="card-badge badge-c">Pending Approval</span>
+                    <span class="card-read-time">Submitted 2 hrs ago by Alex</span>
+                </div>
+                <h2>Data Structures - Binary Search Trees Guide</h2>
+                <p>
+                    Comprehensive implementation of binary tree insertion, traversal algorithms (inorder, preorder, postorder), and deletion with edge cases.
+                </p>
+                <p>
+                    <strong>Subject:</strong> C Programming &bull; <strong>File:</strong> BST_Notes.pdf (1.4 MB)
+                </p>
+
+                <div class="admin-action-row">
+                    <button class="btn-approve" onclick="handleAdminApprove(this)">
+                        ✓ Approve & Publish
+                    </button>
+                    <button class="btn-reject" onclick="handleAdminReject(this)">
+                        ✕ Reject
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= LOGIN ================= -->
+    <section id="login" class="page">
+
+        <div class="auth-wrapper">
+            <div class="auth-ambient-glow auth-ambient-1"></div>
+            <div class="auth-ambient-glow auth-ambient-2"></div>
+
+            <div class="auth-box">
+                <div class="auth-header-icon">🔐</div>
+                <h1>Welcome Back</h1>
+                <p class="page-subtitle">Please enter your student credentials to access your study portal dashboard.</p>
+
+                <div id="login-message" class="auth-message"></div>
+
+                <form id="login-form">
+
+                    <label for="login-email">Email Address</label>
+                    <input
+                        type="email"
+                        id="login-email"
+                        placeholder="student@college.edu"
+                        required
+                        autocomplete="email"
+                    >
+
+                    <label for="login-password">Password</label>
+                    <input
+                        type="password"
+                        id="login-password"
+                        placeholder="••••••••••••"
+                        required
+                        autocomplete="current-password"
+                    >
+
+                    <button type="submit" id="login-submit-btn">
+                        Sign In to Portal
+                    </button>
+
+                </form>
+
+                <div class="auth-footer-help" id="login-footer-help">
+                    <p id="first-time-helper" style="display: none;">
+                        First time visiting? <a href="#" onclick="handleDirectRegisterClick(event)">Create a free account</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= REGISTER ================= -->
+    <section id="register" class="page">
+
+        <div class="auth-wrapper">
+            <div class="auth-ambient-glow auth-ambient-1"></div>
+            <div class="auth-ambient-glow auth-ambient-2"></div>
+
+            <div class="auth-box">
+                <div class="auth-header-icon">📝</div>
+                <h1>Create Student Account</h1>
+                <p class="page-subtitle">Join your classmates and access comprehensive study notes and learning tools.</p>
+
+                <div id="register-message" class="auth-message"></div>
+
+                <form id="register-form">
+
+                    <label for="register-name">Full Name</label>
+                    <input
+                        type="text"
+                        id="register-name"
+                        placeholder="Alex Johnson"
+                        required
+                        autocomplete="name"
+                    >
+
+                    <label for="register-email">College / Personal Email</label>
+                    <input
+                        type="email"
+                        id="register-email"
+                        placeholder="alex@college.edu"
+                        required
+                        autocomplete="email"
+                    >
+
+                    <label for="register-password">Password</label>
+                    <input
+                        type="password"
+                        id="register-password"
+                        placeholder="Create password (min. 6 characters)"
+                        required
+                        minlength="6"
+                        autocomplete="new-password"
+                    >
+
+                    <button type="submit" id="register-submit-btn">
+                        Register Account
+                    </button>
+
+                </form>
+
+                <div class="auth-footer-help">
+                    <p>
+                        Already registered? <a href="#" onclick="showPage('login')">Sign In instead</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <p>
+            <span>📚 <strong>Student Study Resource Portal</strong> &bull; Developed for Academic Excellence &bull; © 2026</span>
+        </p>
+    </footer>
+
+
+    <!-- ================= NOTES READER MODAL ================= -->
+    <div id="notes-modal" class="modal-backdrop" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modal-resource-title">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <div class="modal-header-info">
+                    <div class="modal-tag-row">
+                        <span id="modal-subject-tag" class="subject-tag">Subject</span>
+                        <span id="modal-reading-time" class="meta-pill">⏱️ 5 min read</span>
+                        <span id="modal-level" class="meta-pill">🎯 All Levels</span>
+                    </div>
+                    <h2 id="modal-resource-title">Resource Title</h2>
+                </div>
+                <div class="modal-header-actions">
+                    <button id="copy-notes-btn" class="modal-action-btn" title="Copy full notes to clipboard">
+                        📋 <span>Copy Notes</span>
+                    </button>
+                    <button id="download-notes-btn" class="modal-action-btn" title="Download notes as text file">
+                        ⬇️ <span>Download</span>
+                    </button>
+                    <button id="print-notes-btn" class="modal-action-btn" title="Print notes or save as PDF">
+                        🖨️ <span>Print</span>
+                    </button>
+                    <button id="close-modal-btn" class="modal-close-btn" aria-label="Close notes modal" title="Close (Esc)">
+                        &times;
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <!-- Summary / Overview Callout -->
+                <div class="notes-summary-callout">
+                    <div class="summary-icon">📌</div>
+                    <div class="summary-text">
+                        <strong>Overview:</strong>
+                        <p id="modal-summary-text"></p>
+                    </div>
+                </div>
+
+                <!-- Notes Content Injected Here -->
+                <div id="modal-notes-content" class="notes-content"></div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="footer-tip">
+                    💡 <em>Tip: Press <strong>Esc</strong> to close the reader or click <strong>Print</strong> to save as a PDF.</em>
+                </div>
+                <button id="footer-close-btn" class="btn-secondary">Close Notes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+
+</body>
+</html>
